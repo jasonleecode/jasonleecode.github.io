@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jason Lee&#39;s Blog</title>
-    <link>https://jasonlee.github.io/tags/</link>
+    <link>https://jasonleecode.github.io/tags/</link>
     <description>Recent content in Tags on Jason Lee&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>youremail@domain.com (Some Person)</managingEditor>
-    <webMaster>youremail@domain.com (Some Person)</webMaster><atom:link href="https://jasonlee.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <webMaster>youremail@domain.com (Some Person)</webMaster><atom:link href="https://jasonleecode.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
