@@ -27,7 +27,7 @@ gPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。�
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
-    "name": "Jason Lee\u0027s Blog",
+    "name": "Jason Lee\x27s Blog",
     
     "url": "https:\/\/jasonleecode.github.io"
 }
@@ -71,7 +71,7 @@ gPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。�
     "name" : "Jason Lee"
   },
   "headline": "First Blog",
-  "description" : "gPTP，自动驾驶时间同步里的“有趣灵魂” 一辆宣称具备L4\/L5自动驾驶功能的车辆，如果多个激光雷达之间的时间同步不够精确？如果传感器感知数据通过以太网传输到智驾域控制器的延迟不可控？如果智驾域控制器规划决策的结果通过以太网传输到底盘域控制器的延迟也不可控？如果座舱域内屏幕显示的变道决策与扬声器播报的声音不同步？那将仍然只是一辆适合演示或测试的无情机器，一副没有“有趣灵魂”的躯体。\n自动驾驶功能对数据在传输过程的可靠性和实时性要求远超汽车以往任何功能，而作为域架构\/中央计算架构下承载数据传输的车载以太网，必须具备类似当前CAN\/LIN网络下数据传输的确定性、实时性能力。而TSN作为一种可以基于车载以太网提供确定性和实时性数据传输的全新网络技术，开始进入到自动驾驶产业上下游的视野。\nTSN的确定性和实时性优势是建立在精确的时间同步基础之上，而TSN中用于实现精确时间同步的协议是IEEE 802.1AS，也就是业界常说的gPTP。而随着TSN上下游产业的成熟，以及自动驾驶量产落地的推进，PPS\u002bgPTP必将契合全域架构\/中央计算架构下自动驾驶功能的需求。\nTSN的前情回顾\nTSN（Time-Sensitive Networking，时间敏感型网络）技术的前身是AVB（Audio\/Video Bridging，音视频桥接）技术。在以太网音视频传输领域，如果音频和视频信息没有严格的时序规则以及不具有可预测的延迟，则会出现声音和画面不一致的现象。而高清的音频和视频数据传输，带宽需求极大，实时性要求又非常高。如何保证高带宽下的实时、同步传输，成为以太网音视频传输领域的难题。\n2006年，IEEE 802.1工作组成立AVB任务组，主攻以上难题。经过几年攻关后，成功找到了高带宽音视频数据在以太网中实时、同步传输的方法，并制定了一系列标准。AVB由此开始受到工业、汽车领域产学研人士的关注。\n2012年，AVB任务组改名TSN任务组，并在其章程中扩大了时间确定性以太网的应用需求和适用范围。TSN任务组通过制定一系列的传输和转发机制来保证数据在车载以太网传输过程中的低延时、低抖动和低丢包率，从而保证数据在高可靠性的前提下进行快速传输，为在工业、汽车领域的应用打下理论基础。\nTSN协议栈是一系列IEEE 802.1标准的集合，包括技术类和配置类。技术类也称为组件，主要有五类组件构成，包括时间同步组件、可靠性组件、延时控制组件、资源管理组件和安全组件。配置类主要分为工业领域、汽车领域和移动领域等。汽车领域主要涉及两份配置标准IEEE 802.1BA和IEEE P802.1DG，后者将gPTP定义为车载以太网TSN网络下时间同步的标准。\ngPTP的精彩呈现\n一、基础概念\ngPTP（generalized Precision Time Protocol，广义精确时间同步协议），基于PTP（IEEE 1588v2）协议进行了一系列优化，形成了更具有针对性的时间同步机制，可以实现μs级的同步精度。\ngPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。每种设备都具有本地时钟，本地时钟都是通过晶振的振荡周期进行度量的，设备内部硬件计数器负责对振荡周期进行计数。设备中用来发布时间同步报文的网络端口称为主端口，用来接收时间同步报文的端口称为从端口。\n（1）Time-aware-end Station，既可以作为主时钟，也可以作为从时钟。\n（2）Time-aware Bridge，既可以作为主时钟，也可以作为桥接设备，类似交换机。桥接类设备在收到gPTP报文后，会请报文搓个澡，然后再送出去。而报文在桥接设备内搓澡消耗的时间，称为驻留时间。gPTP要求桥接设备必须具有测量驻留时间的能力。\n下图展示了一个简单的gPTP系统，包含一个时钟源、1个主时钟，2个桥接设备，4个从时钟。主时钟是系统内的时间基准，一般具有更高精度的本地时钟，同时需要能够被高精度准时钟源（如卫星系统、原子钟等）授时。主时钟在系统内可以动态分配，也可以预先分配（对于车载固定拓扑应用场景，多采用预先分配的原则）。",
+  "description" : "gPTP，自动驾驶时间同步里的“有趣灵魂” 一辆宣称具备L4\/L5自动驾驶功能的车辆，如果多个激光雷达之间的时间同步不够精确？如果传感器感知数据通过以太网传输到智驾域控制器的延迟不可控？如果智驾域控制器规划决策的结果通过以太网传输到底盘域控制器的延迟也不可控？如果座舱域内屏幕显示的变道决策与扬声器播报的声音不同步？那将仍然只是一辆适合演示或测试的无情机器，一副没有“有趣灵魂”的躯体。\n自动驾驶功能对数据在传输过程的可靠性和实时性要求远超汽车以往任何功能，而作为域架构\/中央计算架构下承载数据传输的车载以太网，必须具备类似当前CAN\/LIN网络下数据传输的确定性、实时性能力。而TSN作为一种可以基于车载以太网提供确定性和实时性数据传输的全新网络技术，开始进入到自动驾驶产业上下游的视野。\nTSN的确定性和实时性优势是建立在精确的时间同步基础之上，而TSN中用于实现精确时间同步的协议是IEEE 802.1AS，也就是业界常说的gPTP。而随着TSN上下游产业的成熟，以及自动驾驶量产落地的推进，PPS\x2bgPTP必将契合全域架构\/中央计算架构下自动驾驶功能的需求。\nTSN的前情回顾\nTSN（Time-Sensitive Networking，时间敏感型网络）技术的前身是AVB（Audio\/Video Bridging，音视频桥接）技术。在以太网音视频传输领域，如果音频和视频信息没有严格的时序规则以及不具有可预测的延迟，则会出现声音和画面不一致的现象。而高清的音频和视频数据传输，带宽需求极大，实时性要求又非常高。如何保证高带宽下的实时、同步传输，成为以太网音视频传输领域的难题。\n2006年，IEEE 802.1工作组成立AVB任务组，主攻以上难题。经过几年攻关后，成功找到了高带宽音视频数据在以太网中实时、同步传输的方法，并制定了一系列标准。AVB由此开始受到工业、汽车领域产学研人士的关注。\n2012年，AVB任务组改名TSN任务组，并在其章程中扩大了时间确定性以太网的应用需求和适用范围。TSN任务组通过制定一系列的传输和转发机制来保证数据在车载以太网传输过程中的低延时、低抖动和低丢包率，从而保证数据在高可靠性的前提下进行快速传输，为在工业、汽车领域的应用打下理论基础。\nTSN协议栈是一系列IEEE 802.1标准的集合，包括技术类和配置类。技术类也称为组件，主要有五类组件构成，包括时间同步组件、可靠性组件、延时控制组件、资源管理组件和安全组件。配置类主要分为工业领域、汽车领域和移动领域等。汽车领域主要涉及两份配置标准IEEE 802.1BA和IEEE P802.1DG，后者将gPTP定义为车载以太网TSN网络下时间同步的标准。\ngPTP的精彩呈现\n一、基础概念\ngPTP（generalized Precision Time Protocol，广义精确时间同步协议），基于PTP（IEEE 1588v2）协议进行了一系列优化，形成了更具有针对性的时间同步机制，可以实现μs级的同步精度。\ngPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。每种设备都具有本地时钟，本地时钟都是通过晶振的振荡周期进行度量的，设备内部硬件计数器负责对振荡周期进行计数。设备中用来发布时间同步报文的网络端口称为主端口，用来接收时间同步报文的端口称为从端口。\n（1）Time-aware-end Station，既可以作为主时钟，也可以作为从时钟。\n（2）Time-aware Bridge，既可以作为主时钟，也可以作为桥接设备，类似交换机。桥接类设备在收到gPTP报文后，会请报文搓个澡，然后再送出去。而报文在桥接设备内搓澡消耗的时间，称为驻留时间。gPTP要求桥接设备必须具有测量驻留时间的能力。\n下图展示了一个简单的gPTP系统，包含一个时钟源、1个主时钟，2个桥接设备，4个从时钟。主时钟是系统内的时间基准，一般具有更高精度的本地时钟，同时需要能够被高精度准时钟源（如卫星系统、原子钟等）授时。主时钟在系统内可以动态分配，也可以预先分配（对于车载固定拓扑应用场景，多采用预先分配的原则）。",
   "inLanguage" : "en",
   "wordCount":  31 ,
   "datePublished" : "2022-01-04T15:57:19",
@@ -119,7 +119,7 @@ gPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。�
   <meta name="twitter:image" content="https://jasonleecode.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://jasonleecode.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.91.2" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://jasonleecode.github.io/index.xml" type="application/rss+xml" title="Jason Lee&#39;s Blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jasonleecode.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -455,7 +455,7 @@ gPTP定义有两种设备类型，Time-aware-end Station和Time-aware Bridge。�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.91.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          <a href="https://gohugo.io">Hugo v0.68.3</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

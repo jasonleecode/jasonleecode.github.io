@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
     <loc>https://jasonleecode.github.io/</loc>
-    <lastmod>2022-01-28T13:40:14+08:00</lastmod>
-  </url><url>
+    <lastmod>2022-06-15T16:17:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jasonleecode.github.io/post/master2s/</loc>
+    <lastmod>2022-06-15T16:17:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jasonleecode.github.io/post/</loc>
+    <lastmod>2022-06-15T16:17:09+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jasonleecode.github.io/posts/mqtt/</loc>
     <lastmod>2022-01-28T13:40:14+08:00</lastmod>
-  </url><url>
-    <loc>https://jasonleecode.github.io/posts/</loc>
-    <lastmod>2022-01-28T13:40:14+08:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://jasonleecode.github.io/posts/firstblog/</loc>
     <lastmod>2022-01-04T15:57:19+08:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://jasonleecode.github.io/categories/</loc>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://jasonleecode.github.io/tags/</loc>
   </url>
+  
 </urlset>
