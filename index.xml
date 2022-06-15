@@ -14,16 +14,6 @@
     
     <item>
       <title>Master2s</title>
-      <link>https://jasonleecode.github.io/post/master2s/</link>
-      <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate>
-      <author>jsnleeming@gmail.com (Jason Lee)</author>
-      <guid>https://jasonleecode.github.io/post/master2s/</guid>
-      <description>Master 2S鼠标接收器配对 一不小心将鼠标第一通道配置给改了，网上搜解决方案很久都没有找到，也问题其他朋友，都不知道该怎么办，今天一次偶然的机会在网上看到了一个办法，就试了一下，接收器配对成功。方法如下：
- 接收器插到电脑的USB口，然后按住鼠标通道切换按钮，使指示灯进入闪烁状态； 打开罗技的logi options软件，首页左下角“添加/移除设备”，选择优联接收器方式，重新配对就好了。  </description>
-    </item>
-    
-    <item>
-      <title>Master2s</title>
       <link>https://jasonleecode.github.io/posts/master2s/</link>
       <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate>
       <author>jsnleeming@gmail.com (Jason Lee)</author>
