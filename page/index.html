@@ -165,7 +165,7 @@
     
     
 
-<link type="text/css" rel="stylesheet" href="/css/bundle.min.c292cb3be63d52b9e48e3ab7ad380dd47237482a9c56d53f18065e8bc87f921e.css">
+<link type="text/css" rel="stylesheet" href="/css/bundle.min.301ff30ca282163566cf8905cae0191fb620251c6228a456fcf1bbbff7b05653.css">
 
 
     
@@ -275,6 +275,65 @@
 </nav>
 
 
+        <div class="all-posts">
+    <p class="sidebar-section-title">All Posts</p>
+    <div class="all-posts-list">
+        
+            <a href="/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/" class="sidebar-post-link ">
+                How to Fix Cm390 Ble Adaptor for Ubuntu
+            </a>
+        
+            <a href="/posts/master2s/" class="sidebar-post-link ">
+                Master2s
+            </a>
+        
+            <a href="/posts/mqtt/" class="sidebar-post-link ">
+                Mqtt
+            </a>
+        
+            <a href="/posts/firstblog/" class="sidebar-post-link ">
+                First Blog
+            </a>
+        
+    </div>
+</div>
+
+<style>
+.sidebar-section-title {
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.all-posts-list {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    scrollbar-width: thin;
+}
+.sidebar-post-link {
+    font-size: 0.85rem;
+    color: var(--list-color);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 0;
+}
+.sidebar-post-link:hover {
+    color: var(--link-color);
+}
+.sidebar-post-link.active {
+    color: var(--link-color);
+    font-weight: bold;
+}
+</style>
+
         
 
 
@@ -361,8 +420,15 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
     
 </div>
             </main>
-            
+            <div id="article-toc" class="article-toc ">
+                
+            </div>
         </div>
+        <button class="toc-toggle" id="toc-toggle" title="Toggle sidebar" aria-label="Toggle sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
         
 <button id="back-to-top" class="back-to-top" aria-label="返回顶部" title="返回顶部">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -372,6 +438,33 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 </button>
 
 
+        <script>
+        (function() {
+            var toggle = document.getElementById('toc-toggle');
+            var toc = document.getElementById('article-toc');
+            var content = document.querySelector('.content.container');
+
+            function updateToggle(collapsed) {
+                if (collapsed) {
+                    toc.classList.add('collapsed');
+                    toggle.classList.add('collapsed');
+                    if (content) content.classList.add('toc-collapsed');
+                } else {
+                    toc.classList.remove('collapsed');
+                    toggle.classList.remove('collapsed');
+                    if (content) content.classList.remove('toc-collapsed');
+                }
+            }
+
+            var isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+            updateToggle(isCollapsed);
+
+            toggle.addEventListener('click', function() {
+                var currentlyCollapsed = toc.classList.contains('collapsed');
+                updateToggle(!currentlyCollapsed);
+                localStorage.setItem('toc-collapsed', !currentlyCollapsed);
+            });
+        })();
+        </script>
     </body>
 </html>
-
