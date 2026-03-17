@@ -2,11 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Jason Lee&#39;s Blog</title>
-    <link>https://jasonleecode.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Jason Lee&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <managingEditor>jsnleeming@gmail.com (Jason Lee)</managingEditor>
+    <webMaster>jsnleeming@gmail.com (Jason Lee)</webMaster>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://jasonleecode.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
