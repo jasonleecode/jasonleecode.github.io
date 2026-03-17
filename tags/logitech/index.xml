@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logitech on Jason Lee&#39;s Blog</title>
+    <link>https://jasonleecode.github.io/tags/logitech/</link>
+    <description>Recent content in Logitech on Jason Lee&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <managingEditor>jsnleeming@gmail.com (Jason Lee)</managingEditor>
+    <webMaster>jsnleeming@gmail.com (Jason Lee)</webMaster>
+    <lastBuildDate>Wed, 15 Jun 2022 16:17:09 +0800</lastBuildDate>
+    <atom:link href="https://jasonleecode.github.io/tags/logitech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Master2s</title>
+      <link>https://jasonleecode.github.io/posts/master2s/</link>
+      <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/posts/master2s/</guid>
+      <description>&lt;h3 id=&#34;master-2s鼠标接收器配对&#34;&gt;Master 2S鼠标接收器配对&lt;/h3&gt;&#xA;&lt;p&gt;一不小心将鼠标第一通道配置给改了，网上搜解决方案很久都没有找到，也问题其他朋友，都不知道该怎么办，今天一次偶然的机会在网上看到了一个办法，就试了一下，接收器配对成功。方法如下：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;接收器插到电脑的USB口，然后按住鼠标通道切换按钮，使指示灯进入闪烁状态；&lt;/li&gt;&#xA;&lt;li&gt;打开罗技的logi options软件，首页左下角“添加/移除设备”，选择优联接收器方式，重新配对就好了。&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

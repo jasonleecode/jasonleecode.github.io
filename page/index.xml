@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Jason Lee&#39;s Blog</title>
-    <link>http://localhost:1313/page/</link>
+    <link>https://jasonleecode.github.io/page/</link>
     <description>Recent content in Pages on Jason Lee&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <managingEditor>jsnleeming@gmail.com (Jason Lee)</managingEditor>
     <webMaster>jsnleeming@gmail.com (Jason Lee)</webMaster>
     <lastBuildDate>Tue, 17 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jasonleecode.github.io/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>http://localhost:1313/page/about/</link>
+      <link>https://jasonleecode.github.io/page/about/</link>
       <pubDate>Tue, 17 Mar 2026 00:00:00 +0000</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
-      <guid>http://localhost:1313/page/about/</guid>
+      <guid>https://jasonleecode.github.io/page/about/</guid>
       <description>&lt;p&gt;Hi, I&amp;rsquo;m Jason Lee. Welcome to my blog!&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,12 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jason Lee&#39;s Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://jasonleecode.github.io/tags/</link>
     <description>Recent content in Tags on Jason Lee&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <managingEditor>jsnleeming@gmail.com (Jason Lee)</managingEditor>
     <webMaster>jsnleeming@gmail.com (Jason Lee)</webMaster>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Mar 2026 10:19:13 +0800</lastBuildDate>
+    <atom:link href="https://jasonleecode.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bluetooth</title>
+      <link>https://jasonleecode.github.io/tags/bluetooth/</link>
+      <pubDate>Tue, 17 Mar 2026 10:19:13 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/bluetooth/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Driver</title>
+      <link>https://jasonleecode.github.io/tags/driver/</link>
+      <pubDate>Tue, 17 Mar 2026 10:19:13 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/driver/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fix</title>
+      <link>https://jasonleecode.github.io/tags/fix/</link>
+      <pubDate>Tue, 17 Mar 2026 10:19:13 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/fix/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ubuntu</title>
+      <link>https://jasonleecode.github.io/tags/ubuntu/</link>
+      <pubDate>Tue, 17 Mar 2026 10:19:13 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hardware</title>
+      <link>https://jasonleecode.github.io/tags/hardware/</link>
+      <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Logitech</title>
+      <link>https://jasonleecode.github.io/tags/logitech/</link>
+      <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/logitech/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mouse</title>
+      <link>https://jasonleecode.github.io/tags/mouse/</link>
+      <pubDate>Wed, 15 Jun 2022 16:17:09 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/mouse/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Iot</title>
+      <link>https://jasonleecode.github.io/tags/iot/</link>
+      <pubDate>Fri, 28 Jan 2022 13:40:14 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/iot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mqtt</title>
+      <link>https://jasonleecode.github.io/tags/mqtt/</link>
+      <pubDate>Fri, 28 Jan 2022 13:40:14 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/mqtt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Protocol</title>
+      <link>https://jasonleecode.github.io/tags/protocol/</link>
+      <pubDate>Fri, 28 Jan 2022 13:40:14 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/protocol/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automotive</title>
+      <link>https://jasonleecode.github.io/tags/automotive/</link>
+      <pubDate>Tue, 04 Jan 2022 15:57:19 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/automotive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ethernet</title>
+      <link>https://jasonleecode.github.io/tags/ethernet/</link>
+      <pubDate>Tue, 04 Jan 2022 15:57:19 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/ethernet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gptp</title>
+      <link>https://jasonleecode.github.io/tags/gptp/</link>
+      <pubDate>Tue, 04 Jan 2022 15:57:19 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/gptp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tsn</title>
+      <link>https://jasonleecode.github.io/tags/tsn/</link>
+      <pubDate>Tue, 04 Jan 2022 15:57:19 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
+      <guid>https://jasonleecode.github.io/tags/tsn/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
