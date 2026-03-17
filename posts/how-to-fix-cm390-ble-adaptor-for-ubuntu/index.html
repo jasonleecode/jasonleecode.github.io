@@ -1,1040 +1,270 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>How to Fix Cm390 Ble Adaptor for Ubuntu | Jason Lee&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="ubuntu18.04 rtl8761bu bluetooth driver
-最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。
-蓝牙适配器型号是：
-uGreen Bluetooth 5.0 USB Adapter CM390
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
 
 
+      <title>How to Fix Cm390 Ble Adaptor for Ubuntu - </title>
 
-
+  <meta name="description" content="ubuntu18.04 rtl8761bu bluetooth driver
+最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。">
+  <meta name="author" content="Jason Lee"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Jason Lee\u0027s Blog",
+    
+    "url": "http:\/\/localhost:1313\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "http:\/\/localhost:1313\/"
   
-    
-      
-(
-[
-[
-[
-[
-[
-[
-[
-[
-[
-[
-b
-a
-s
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-e
-0
-0
-0
-0
-0
-0
-0
-0
-0
-1
-)
-6
-6
-6
-6
-6
-6
-6
-6
-8
-6
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-➜
-6
-6
-6
-6
-6
-6
-6
-6
-7
-7
-3
-3
-3
-4
-4
-4
-4
-4
-2
-8
-4
-4
-4
-6
-7
-7
-7
-7
-5
-9
-~
-8
-8
-8
-2
-2
-2
-3
-3
-6
-3
-0
-0
-0
-1
-0
-1
-1
-3
-0
-2
-d
-1
-2
-3
-5
-9
-2
-2
-9
-1
-2
-m
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-e
-s
-u
-u
-u
-B
-B
-B
-B
-B
-B
-B
-g
-s
-s
-s
-l
-l
-l
-l
-l
-l
-l
-b
-b
-b
-u
-u
-u
-u
-u
-u
-u
-|
-e
-e
-e
-e
-e
-e
-e
-1
-1
-1
-t
-t
-t
-t
-t
-t
-t
-t
--
--
--
-o
-o
-o
-o
-o
-o
-o
-a
-1
-1
-1
-o
-o
-o
-o
-o
-o
-o
-i
-2
-2
-2
-t
-t
-t
-t
-t
-t
-t
-l
-.
-.
-.
-h
-h
-h
-h
-h
-h
-h
-4
-4
-4
-:
-:
-:
-:
-:
-:
-:
--
-.
-.
-.
-f
-2
-2
-2
-h
-h
-h
-h
-h
-h
-h
-:
-:
-:
-c
-c
-c
-c
-c
-c
-c
-i
-i
-i
-i
-i
-i
-i
-P
-M
-S
-0
-0
-0
-0
-0
-0
-0
-r
-a
-e
-:
-:
-:
-:
-:
-:
-:
-o
-n
-r
-d
-u
-i
-R
-R
-R
-R
-R
-c
-R
-u
-f
-a
-T
-T
-T
-T
-T
-o
-T
-c
-a
-l
-L
-L
-L
-L
-L
-m
-L
-t
-c
-N
-:
-:
-:
-:
-:
-m
-:
-:
-t
-u
-a
-u
-m
-e
-r
-l
-l
-c
-n
-d
-B
-r
-b
-x
-o
-o
-o
-f
-d
-o
-l
-e
-e
-a
-m
-a
-a
-g
-w
-u
-r
-r
-m
-_
-d
-d
-_
-0
-n
-e
-:
-:
-i
-v
-i
-i
-s
-x
-l
-t
-n
-e
-n
-n
-z
-f
-o
-o
-R
-0
-i
-r
-g
-g
-c
-a
-o
-e
-0
-n
-s
-4
-2
-d
-t
-a
-E
-g
-i
-r
-r
-4
-0
-h
-l
-0
-o
-t
-t
-,
-f
-t
-4
-h
-n
-l
-l
-t
-w
-R
-e
-C
-c
-_
-_
-t
-x
-a
-k
-2
-i
-s
-b
-b
-o
-c
-d
-3
-_
-t
-t
-t
-t
-t
-o
-i
-9
-v
-a
-/
-/
-a
-i
-m
-o
-9
-e
-t
-r
-r
-l
-m
-m
-8
-r
-u
-t
-t
-e
-a
-7
-=
-s
-l
-l
-s
-o
-n
-0
-=
-8
-8
-z
-u
-d
-a
-0
-7
-7
-t
-6
-6
-1
-f
-h
-v
-1
-1
-4
-a
-c
-e
-a
-a
-8
-i
-i
-r
-_
-_
-0
-l
-_
-s
-f
-c
-8
-e
-r
-i
-w
-o
-d
-e
-o
-.
-n
-v
-n
-b
-f
-=
-=
-i
-i
--
-0
-1
-n
-g
-1
-0
-.
-1
-0
-b
-0
-b
-i
-)
-n
-l
-m
-p
-_
-v
-e
-r
-=
-0
-a
-l
-m
-p
-_
-s
-u
-b
-v
-e
-r
-=
-8
-7
-6
-1
-
-
-    
   
-
-
-
-
-
   
-    
-      
-(
-h
-	
-	
-	
-	
-	
-	
-	
-	
-b
-c
-B
-D
-R
-T
-F
-P
-L
-L
-a
-i
-D
-O
-X
-X
-e
-a
-i
-i
-s
-0
-W
-a
-c
-n
-n
-e
-:
-A
-N
-b
-b
-t
-k
-k
-k
-)
-	
-d
-y
-y
-u
-e
-T
-d
-t
-t
-r
-t
-p
-m
-➜
-y
-r
-e
-e
-e
-o
-o
-p
-e
-s
-s
-s
-t
-l
-d
-e
-s
-:
-:
-:
-y
-i
-e
-~
-:
-s
-4
-1
-p
-c
-:
-:
-2
-5
-0
-e
-y
-h
-P
-7
-0
-x
-:
-:
-S
-c
-r
-0
-5
-0
-L
-i
-i
-0
-a
-0
-0
-D
-A
-c
-m
-:
-c
-M
-V
-o
-a
-0
-l
-a
-0
-1
-E
-n
-r
-0
-:
-c
-x
-f
-y
-:
-0
-l
-0
-D
-A
-i
-0
-:
-0
-H
-C
-g
-0
-s
-0
-1
-C
-B
-:
-c
-0
-E
--
-u
-0
-o
-s
-x
-H
-P
-a
-s
-0
-:
-c
-0
-V
-T
-:
-:
-0
-o
-0
-1
-0
-:
-U
-0
-e
-0
-0
-S
-:
-v
-x
-B
-0
-e
-c
-0
-0
-n
-o
-0
-t
-m
-s
-m
-0
-A
-:
-a
-x
-C
-6
-n
-0
-L
-0
-d
-0
-s
-M
-e
-:
-0
-T
-r
-6
-x
-U
-r
-1
-0
-:
-o
-0
-r
-e
-0
-s
-r
-0
-:
-:
-r
-x
-0
-0
-o
-0
-r
-0
-s
-S
-:
-0
-C
-0
-x
-O
-0
-0
-M
-T
-U
-:
-0
-:
-0
-
-
-    
   
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "http:\/\/localhost:1313\/posts\/how-to-fix-cm390-ble-adaptor-for-ubuntu\/",
+          "name": "How to fix cm390 ble adaptor for ubuntu"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Jason Lee"
+  },
+  "headline": "How to Fix Cm390 Ble Adaptor for Ubuntu",
+  "description" : "ubuntu18.04 rtl8761bu bluetooth driver 最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载\/lib\/firmware\/rtl_bt\/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。\n",
+  "inLanguage" : "en",
+  "wordCount":  2382 ,
+  "datePublished" : "2026-03-17T10:19:13\u002b08:00",
+  "dateModified" : "2026-03-17T10:19:13\u002b08:00",
+  "image" : "http:\/\/localhost:1313\/img\/avatar-icon.png",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "http:\/\/localhost:1313\/posts\/how-to-fix-cm390-ble-adaptor-for-ubuntu\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "http:\/\/localhost:1313\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "http:\/\/localhost:1313\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
 
-虽然log中显示的型号是rtl8761a，但是不知道识别得是否正确，这个型号信息有可能不是它的真实型号。网上查不到关于这个cm390的更多的芯片信息。">
-    <meta name="generator" content="Hugo 0.146.0">
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<meta property="og:title" content="How to Fix Cm390 Ble Adaptor for Ubuntu" />
+<meta property="og:description" content="ubuntu18.04 rtl8761bu bluetooth driver
+最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。">
+<meta property="og:image" content="http://localhost:1313/img/avatar-icon.png" />
+<meta property="og:url" content="http://localhost:1313/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Jason Lee&#39;s Blog" />
 
+  <meta name="twitter:title" content="How to Fix Cm390 Ble Adaptor for Ubuntu" />
+  <meta name="twitter:description" content="ubuntu18.04 rtl8761bu bluetooth driver
+最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成 …">
+  <meta name="twitter:image" content="http://localhost:1313/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='http://localhost:1313/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.146.0">
+  <link rel="alternate" href="http://localhost:1313/index.xml" type="application/rss+xml" title="Jason Lee&#39;s Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/brands.css" integrity="sha384-+eXGm6TmVoCZR1gX03US+L++L2mJIfOvp2X0+luTuEktXaF5F+e3zn0sO0HBvOyT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/fontawesome.css" integrity="sha384-B5nyPZa7e84uCJEYHtevCdVYtQosWsbDSRtq3cy/jeSVtQW05GL8CKXO7waXsjPK" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/regular.css" integrity="sha384-V71z/A/p/DGaZAryHhiSXRQj8HdQmK2nBgL2bX23MGD+h6ZKpyxOO76f5eSXmIaj" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/solid.css" integrity="sha384-1IIShlrK5iYgvS7OAgIH3prz4RAFP7hHZ2MaLIb9l3+trFwwnw/NdCWcUHlymZDU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/svg.css" integrity="sha384-iBa7uugTOHXqQ2ngvDYJyKrPPQbd9n2P3EQe+o/0+HZe5TNvV+LO5X0lLLUrXLHP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/svg-with-js.css" integrity="sha384-STWnS5AGz6M2YxsnGAd536EqcE2y+ktGovMMuhtXLsCBtl7lujeQj2eN4eDxa57x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/v4-font-face.css" integrity="sha384-fH83IkgQi7kturzlxpXfNdsR8aUOcqj5HUORRVnSvJgObZkIw6aqKAaQx20IWyB/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/v4-shims.css" integrity="sha384-cCODJHSivNBsaHei/8LC0HUD58kToSbDU+xT7Rs51BO1v/IvgT/uM0W6xMoUqKfn" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.0.1/css/v5-font-face.css" integrity="sha384-atSdF89mIn15dv+o2LKkDM6mCh3hwh6A7mwZ6F2it/kenqZbMu+QW/ye1OG4XSWV" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight.min.css" /><link rel="stylesheet" href="http://localhost:1313/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/css/custom.css">
 
-
-
-    
-
-
-    
-      
-<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/">
-    
-
-    
-    
-    <meta property="og:url" content="http://localhost:1313/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/">
-  <meta property="og:site_name" content="Jason Lee&#39;s Blog">
-  <meta property="og:title" content="How to Fix Cm390 Ble Adaptor for Ubuntu">
-  <meta property="og:description" content="ubuntu18.04 rtl8761bu bluetooth driver 最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。
-蓝牙适配器型号是： uGreen Bluetooth 5.0 USB Adapter CM390
-( [ [ [ [ [ [ [ [ [ [ b a s 4 4 4 4 4 4 4 4 4 4 e 0 0 0 0 0 0 0 0 0 1 ) 6 6 6 6 6 6 6 6 8 6 . . . . . . . . . . ➜ 6 6 6 6 6 6 6 6 7 7 3 3 3 4 4 4 4 4 2 8 4 4 4 6 7 7 7 7 5 9 ~ 8 8 8 2 2 2 3 3 6 3 0 0 0 1 0 1 1 3 0 2 d 1 2 3 5 9 2 2 9 1 2 m ] ] ] ] ] ] ] ] ] ] e s u u u B B B B B B B g s s s l l l l l l l b b b u u u u u u u | e e e e e e e 1 1 1 t t t t t t t t - - - o o o o o o o a 1 1 1 o o o o o o o i 2 2 2 t t t t t t t l . . . h h h h h h h 4 4 4 : : : : : : : - . . . f 2 2 2 h h h h h h h : : : c c c c c c c i i i i i i i P M S 0 0 0 0 0 0 0 r a e : : : : : : : o n r d u i R R R R R c R u f a T T T T T o T c a l L L L L L m L t c N : : : : : m : : t u a u m e r l l c n d B r b x o o o f d o l e e a m a a g w u r r m _ d d _ 0 n e : : i v i i s x l t n e n n z f o o R 0 i r g g c a o e 0 n s 4 2 d t a E g i r r 4 0 h l 0 o t t , f t 4 h n l l t w R e C c _ _ t x a k 2 i s b b o c d 3 _ t t t t t o i 9 v a / / a i m o 9 e t r r l m m 8 r u t t e a 7 = s l l s o n 0 = 8 8 z u d a 0 7 7 t 6 6 1 f h v 1 1 4 a c e a a 8 i i r _ _ 0 l _ s f c 8 e r i w o d e o . n v n b f = = i i - 0 1 n g 1 0 . 1 0 b 0 b i ) n l m p _ v e r = 0 a l m p _ s u b v e r = 8 7 6 1 ( h b c B D R T F P L L a i D O X X e a i i s 0 W a c n n e : A N b b t k k k ) d y y u e T d t t r t p m ➜ y r e e e o o p e s s s t l d e s : : : y i e ~ : s 4 1 p c : : 2 5 0 e y h P 7 0 x : : S c r 0 5 0 L i i 0 a 0 0 D A c m : c M V o a 0 l a 0 1 E n r 0 : c x f y : 0 l 0 D A i 0 : 0 H C g 0 s 0 1 C B : c 0 E - u 0 o s x H P a s 0 : c 0 V T : : 0 o 0 1 0 : U 0 e 0 0 S : v x B 0 e c 0 0 n o 0 t m s m 0 A : a x C 6 n 0 L 0 d 0 s M e : 0 T r 6 x U r 1 0 : o 0 r e 0 s r 0 : : r x 0 0 o 0 r 0 s S : 0 C 0 x O 0 0 M T U : 0 : 0 虽然log中显示的型号是rtl8761a，但是不知道识别得是否正确，这个型号信息有可能不是它的真实型号。网上查不到关于这个cm390的更多的芯片信息。">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-03-17T10:19:13+08:00">
-    <meta property="article:modified_time" content="2026-03-17T10:19:13+08:00">
-
-  <meta itemprop="name" content="How to Fix Cm390 Ble Adaptor for Ubuntu">
-  <meta itemprop="description" content="ubuntu18.04 rtl8761bu bluetooth driver 最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。
-蓝牙适配器型号是： uGreen Bluetooth 5.0 USB Adapter CM390
-( [ [ [ [ [ [ [ [ [ [ b a s 4 4 4 4 4 4 4 4 4 4 e 0 0 0 0 0 0 0 0 0 1 ) 6 6 6 6 6 6 6 6 8 6 . . . . . . . . . . ➜ 6 6 6 6 6 6 6 6 7 7 3 3 3 4 4 4 4 4 2 8 4 4 4 6 7 7 7 7 5 9 ~ 8 8 8 2 2 2 3 3 6 3 0 0 0 1 0 1 1 3 0 2 d 1 2 3 5 9 2 2 9 1 2 m ] ] ] ] ] ] ] ] ] ] e s u u u B B B B B B B g s s s l l l l l l l b b b u u u u u u u | e e e e e e e 1 1 1 t t t t t t t t - - - o o o o o o o a 1 1 1 o o o o o o o i 2 2 2 t t t t t t t l . . . h h h h h h h 4 4 4 : : : : : : : - . . . f 2 2 2 h h h h h h h : : : c c c c c c c i i i i i i i P M S 0 0 0 0 0 0 0 r a e : : : : : : : o n r d u i R R R R R c R u f a T T T T T o T c a l L L L L L m L t c N : : : : : m : : t u a u m e r l l c n d B r b x o o o f d o l e e a m a a g w u r r m _ d d _ 0 n e : : i v i i s x l t n e n n z f o o R 0 i r g g c a o e 0 n s 4 2 d t a E g i r r 4 0 h l 0 o t t , f t 4 h n l l t w R e C c _ _ t x a k 2 i s b b o c d 3 _ t t t t t o i 9 v a / / a i m o 9 e t r r l m m 8 r u t t e a 7 = s l l s o n 0 = 8 8 z u d a 0 7 7 t 6 6 1 f h v 1 1 4 a c e a a 8 i i r _ _ 0 l _ s f c 8 e r i w o d e o . n v n b f = = i i - 0 1 n g 1 0 . 1 0 b 0 b i ) n l m p _ v e r = 0 a l m p _ s u b v e r = 8 7 6 1 ( h b c B D R T F P L L a i D O X X e a i i s 0 W a c n n e : A N b b t k k k ) d y y u e T d t t r t p m ➜ y r e e e o o p e s s s t l d e s : : : y i e ~ : s 4 1 p c : : 2 5 0 e y h P 7 0 x : : S c r 0 5 0 L i i 0 a 0 0 D A c m : c M V o a 0 l a 0 1 E n r 0 : c x f y : 0 l 0 D A i 0 : 0 H C g 0 s 0 1 C B : c 0 E - u 0 o s x H P a s 0 : c 0 V T : : 0 o 0 1 0 : U 0 e 0 0 S : v x B 0 e c 0 0 n o 0 t m s m 0 A : a x C 6 n 0 L 0 d 0 s M e : 0 T r 6 x U r 1 0 : o 0 r e 0 s r 0 : : r x 0 0 o 0 r 0 s S : 0 C 0 x O 0 0 M T U : 0 : 0 虽然log中显示的型号是rtl8761a，但是不知道识别得是否正确，这个型号信息有可能不是它的真实型号。网上查不到关于这个cm390的更多的芯片信息。">
-  <meta itemprop="datePublished" content="2026-03-17T10:19:13+08:00">
-  <meta itemprop="dateModified" content="2026-03-17T10:19:13+08:00">
-  <meta itemprop="wordCount" content="2382">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="How to Fix Cm390 Ble Adaptor for Ubuntu">
-  <meta name="twitter:description" content="ubuntu18.04 rtl8761bu bluetooth driver 最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。
-蓝牙适配器型号是： uGreen Bluetooth 5.0 USB Adapter CM390
-( [ [ [ [ [ [ [ [ [ [ b a s 4 4 4 4 4 4 4 4 4 4 e 0 0 0 0 0 0 0 0 0 1 ) 6 6 6 6 6 6 6 6 8 6 . . . . . . . . . . ➜ 6 6 6 6 6 6 6 6 7 7 3 3 3 4 4 4 4 4 2 8 4 4 4 6 7 7 7 7 5 9 ~ 8 8 8 2 2 2 3 3 6 3 0 0 0 1 0 1 1 3 0 2 d 1 2 3 5 9 2 2 9 1 2 m ] ] ] ] ] ] ] ] ] ] e s u u u B B B B B B B g s s s l l l l l l l b b b u u u u u u u | e e e e e e e 1 1 1 t t t t t t t t - - - o o o o o o o a 1 1 1 o o o o o o o i 2 2 2 t t t t t t t l . . . h h h h h h h 4 4 4 : : : : : : : - . . . f 2 2 2 h h h h h h h : : : c c c c c c c i i i i i i i P M S 0 0 0 0 0 0 0 r a e : : : : : : : o n r d u i R R R R R c R u f a T T T T T o T c a l L L L L L m L t c N : : : : : m : : t u a u m e r l l c n d B r b x o o o f d o l e e a m a a g w u r r m _ d d _ 0 n e : : i v i i s x l t n e n n z f o o R 0 i r g g c a o e 0 n s 4 2 d t a E g i r r 4 0 h l 0 o t t , f t 4 h n l l t w R e C c _ _ t x a k 2 i s b b o c d 3 _ t t t t t o i 9 v a / / a i m o 9 e t r r l m m 8 r u t t e a 7 = s l l s o n 0 = 8 8 z u d a 0 7 7 t 6 6 1 f h v 1 1 4 a c e a a 8 i i r _ _ 0 l _ s f c 8 e r i w o d e o . n v n b f = = i i - 0 1 n g 1 0 . 1 0 b 0 b i ) n l m p _ v e r = 0 a l m p _ s u b v e r = 8 7 6 1 ( h b c B D R T F P L L a i D O X X e a i i s 0 W a c n n e : A N b b t k k k ) d y y u e T d t t r t p m ➜ y r e e e o o p e s s s t l d e s : : : y i e ~ : s 4 1 p c : : 2 5 0 e y h P 7 0 x : : S c r 0 5 0 L i i 0 a 0 0 D A c m : c M V o a 0 l a 0 1 E n r 0 : c x f y : 0 l 0 D A i 0 : 0 H C g 0 s 0 1 C B : c 0 E - u 0 o s x H P a s 0 : c 0 V T : : 0 o 0 1 0 : U 0 e 0 0 S : v x B 0 e c 0 0 n o 0 t m s m 0 A : a x C 6 n 0 L 0 d 0 s M e : 0 T r 6 x U r 1 0 : o 0 r e 0 s r 0 : : r x 0 0 o 0 r 0 s S : 0 C 0 x O 0 0 M T U : 0 : 0 虽然log中显示的型号是rtl8761a，但是不知道识别得是否正确，这个型号信息有可能不是它的真实型号。网上查不到关于这个cm390的更多的芯片信息。">
-
-	
-  </head><body class="ma0 avenir bg-near-white development is-page is-page page-How-to-fix-cm390-ble-adaptor-for-ubuntu">
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l center items-center justify-between">
-    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
-      
-        Jason Lee&#39;s Blog
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="" title="Blog page">
-              Blog
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="" title="Samples page">
-              Samples
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="page/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white white-90 no-underline" href="tags" title="Tags page">
-              Tags
-            </a>
-          </li>
-          
-        </ul>
-      
-      <div class="ananke-socials"></div>
-
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://localhost:1313/">Jason Lee&#39;s Blog</a>
     </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Jason Lee&#39;s Blog" href="http://localhost:1313/">
+            <img class="avatar-img" src="http://localhost:1313/img/avatar-icon.png" alt="Jason Lee&#39;s Blog" />
+           
+          </a>
+        </div>
+      </div>
+    
+
   </div>
 </nav>
 
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
     </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>How to Fix Cm390 Ble Adaptor for Ubuntu</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
   </header>
 
 
-
-    <main class="pb7" role="main">
-      
-  
-
-  <article class="page-How-to-fix-cm390-ble-adaptor-for-ubuntu flex-l mw7 center ph3 flex-wrap justify-between">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">How to Fix Cm390 Ble Adaptor for Ubuntu</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2026-03-17T10:19:13+08:00">March 17, 2026</time>
-      
-
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h1 id="ubuntu1804-rtl8761bu-bluetooth-driver">ubuntu18.04 rtl8761bu bluetooth driver</h1>
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h1 id="ubuntu1804-rtl8761bu-bluetooth-driver">ubuntu18.04 rtl8761bu bluetooth driver</h1>
 <p>最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。</p>
 <p>蓝牙适配器型号是：
 uGreen Bluetooth 5.0 USB Adapter CM390</p>
@@ -1047,7 +277,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
       xmlns="http://www.w3.org/2000/svg"
       font-family="Menlo,Lucida Console,monospace"
       
-        viewBox="0 0 784 185"
+        viewBox="0 0 784 361"
       >
       <g transform='translate(8,16)'>
 <text text-anchor='middle' x='0' y='4' fill='currentColor' style='font-size:1em'>(</text>
@@ -1061,8 +291,38 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='0' y='132' fill='currentColor' style='font-size:1em'>[</text>
 <text text-anchor='middle' x='0' y='148' fill='currentColor' style='font-size:1em'>[</text>
 <text text-anchor='middle' x='0' y='164' fill='currentColor' style='font-size:1em'>[</text>
+<text text-anchor='middle' x='0' y='196' fill='currentColor' style='font-size:1em'>(</text>
+<text text-anchor='middle' x='0' y='212' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='0' y='228' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='244' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='260' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='276' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='292' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='308' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='324' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='0' y='340' fill='currentColor' style='font-size:1em'>	</text>
 <text text-anchor='middle' x='8' y='4' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='8' y='196' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='8' y='212' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='8' y='228' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='8' y='244' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='8' y='260' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='8' y='276' fill='currentColor' style='font-size:1em'>T</text>
+<text text-anchor='middle' x='8' y='292' fill='currentColor' style='font-size:1em'>F</text>
+<text text-anchor='middle' x='8' y='308' fill='currentColor' style='font-size:1em'>P</text>
+<text text-anchor='middle' x='8' y='324' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='8' y='340' fill='currentColor' style='font-size:1em'>L</text>
 <text text-anchor='middle' x='16' y='4' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='16' y='196' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='16' y='212' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='16' y='228' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='16' y='244' fill='currentColor' style='font-size:1em'>O</text>
+<text text-anchor='middle' x='16' y='260' fill='currentColor' style='font-size:1em'>X</text>
+<text text-anchor='middle' x='16' y='276' fill='currentColor' style='font-size:1em'>X</text>
+<text text-anchor='middle' x='16' y='292' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='16' y='308' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='16' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='16' y='340' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='24' y='4' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='24' y='20' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='24' y='36' fill='currentColor' style='font-size:1em'>4</text>
@@ -1074,6 +334,13 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='24' y='132' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='24' y='148' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='24' y='164' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='24' y='196' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='24' y='212' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='24' y='244' fill='currentColor' style='font-size:1em'>W</text>
+<text text-anchor='middle' x='24' y='292' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='24' y='308' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='24' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='24' y='340' fill='currentColor' style='font-size:1em'>n</text>
 <text text-anchor='middle' x='32' y='4' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='32' y='20' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='32' y='36' fill='currentColor' style='font-size:1em'>0</text>
@@ -1085,6 +352,16 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='32' y='132' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='32' y='148' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='32' y='164' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='32' y='196' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='32' y='212' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='32' y='228' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='32' y='244' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='32' y='260' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='32' y='276' fill='currentColor' style='font-size:1em'>b</text>
+<text text-anchor='middle' x='32' y='292' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='32' y='308' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='32' y='324' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='32' y='340' fill='currentColor' style='font-size:1em'>k</text>
 <text text-anchor='middle' x='40' y='4' fill='currentColor' style='font-size:1em'>)</text>
 <text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='40' y='36' fill='currentColor' style='font-size:1em'>6</text>
@@ -1096,6 +373,13 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='40' y='132' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='40' y='148' fill='currentColor' style='font-size:1em'>8</text>
 <text text-anchor='middle' x='40' y='164' fill='currentColor' style='font-size:1em'>6</text>
+<text text-anchor='middle' x='40' y='196' fill='currentColor' style='font-size:1em'>)</text>
+<text text-anchor='middle' x='40' y='212' fill='currentColor' style='font-size:1em'>	</text>
+<text text-anchor='middle' x='40' y='228' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='40' y='260' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='40' y='276' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='40' y='292' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='40' y='308' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='48' y='20' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='48' y='36' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='48' y='52' fill='currentColor' style='font-size:1em'>.</text>
@@ -1106,6 +390,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='48' y='132' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='48' y='148' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='48' y='164' fill='currentColor' style='font-size:1em'>.</text>
+<text text-anchor='middle' x='48' y='212' fill='currentColor' style='font-size:1em'>T</text>
+<text text-anchor='middle' x='48' y='228' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='48' y='260' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='48' y='276' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='48' y='292' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='48' y='308' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='48' y='324' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='48' y='340' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='56' y='4' fill='currentColor' style='font-size:1em'>➜</text>
 <text text-anchor='middle' x='56' y='20' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='56' y='36' fill='currentColor' style='font-size:1em'>6</text>
@@ -1117,6 +409,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='56' y='132' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='56' y='148' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='56' y='164' fill='currentColor' style='font-size:1em'>7</text>
+<text text-anchor='middle' x='56' y='196' fill='currentColor' style='font-size:1em'>➜</text>
+<text text-anchor='middle' x='56' y='212' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='56' y='228' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='56' y='260' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='56' y='276' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='56' y='292' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='56' y='324' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='56' y='340' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='64' y='20' fill='currentColor' style='font-size:1em'>3</text>
 <text text-anchor='middle' x='64' y='36' fill='currentColor' style='font-size:1em'>3</text>
 <text text-anchor='middle' x='64' y='52' fill='currentColor' style='font-size:1em'>3</text>
@@ -1127,6 +427,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='64' y='132' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='64' y='148' fill='currentColor' style='font-size:1em'>2</text>
 <text text-anchor='middle' x='64' y='164' fill='currentColor' style='font-size:1em'>8</text>
+<text text-anchor='middle' x='64' y='212' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='64' y='228' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='64' y='260' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='64' y='276' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='64' y='292' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='64' y='308' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='64' y='324' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='64' y='340' fill='currentColor' style='font-size:1em'>d</text>
 <text text-anchor='middle' x='72' y='20' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='72' y='36' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='72' y='52' fill='currentColor' style='font-size:1em'>4</text>
@@ -1137,6 +445,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='72' y='132' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='72' y='148' fill='currentColor' style='font-size:1em'>5</text>
 <text text-anchor='middle' x='72' y='164' fill='currentColor' style='font-size:1em'>9</text>
+<text text-anchor='middle' x='72' y='212' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='72' y='228' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='72' y='260' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='72' y='276' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='72' y='292' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='72' y='308' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='72' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='72' y='340' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='80' y='4' fill='currentColor' style='font-size:1em'>~</text>
 <text text-anchor='middle' x='80' y='20' fill='currentColor' style='font-size:1em'>8</text>
 <text text-anchor='middle' x='80' y='36' fill='currentColor' style='font-size:1em'>8</text>
@@ -1148,6 +464,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='80' y='132' fill='currentColor' style='font-size:1em'>3</text>
 <text text-anchor='middle' x='80' y='148' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='80' y='164' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='80' y='196' fill='currentColor' style='font-size:1em'>~</text>
+<text text-anchor='middle' x='80' y='212' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='80' y='228' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='80' y='260' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='80' y='276' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='80' y='308' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='80' y='324' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='80' y='340' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='88' y='20' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='88' y='36' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='88' y='52' fill='currentColor' style='font-size:1em'>0</text>
@@ -1158,6 +482,12 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='88' y='132' fill='currentColor' style='font-size:1em'>3</text>
 <text text-anchor='middle' x='88' y='148' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='88' y='164' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='88' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='88' y='260' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='88' y='276' fill='currentColor' style='font-size:1em'>5</text>
+<text text-anchor='middle' x='88' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='88' y='308' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='88' y='324' fill='currentColor' style='font-size:1em'>y</text>
 <text text-anchor='middle' x='96' y='4' fill='currentColor' style='font-size:1em'>d</text>
 <text text-anchor='middle' x='96' y='20' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='96' y='36' fill='currentColor' style='font-size:1em'>2</text>
@@ -1169,6 +499,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='96' y='132' fill='currentColor' style='font-size:1em'>9</text>
 <text text-anchor='middle' x='96' y='148' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='96' y='164' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='96' y='196' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='96' y='212' fill='currentColor' style='font-size:1em'>P</text>
+<text text-anchor='middle' x='96' y='260' fill='currentColor' style='font-size:1em'>7</text>
+<text text-anchor='middle' x='96' y='276' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='96' y='292' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='96' y='308' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='96' y='324' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='96' y='340' fill='currentColor' style='font-size:1em'>S</text>
 <text text-anchor='middle' x='104' y='4' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='104' y='20' fill='currentColor' style='font-size:1em'>]</text>
 <text text-anchor='middle' x='104' y='36' fill='currentColor' style='font-size:1em'>]</text>
@@ -1180,7 +518,21 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='104' y='132' fill='currentColor' style='font-size:1em'>]</text>
 <text text-anchor='middle' x='104' y='148' fill='currentColor' style='font-size:1em'>]</text>
 <text text-anchor='middle' x='104' y='164' fill='currentColor' style='font-size:1em'>]</text>
+<text text-anchor='middle' x='104' y='196' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='104' y='212' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='104' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='104' y='276' fill='currentColor' style='font-size:1em'>5</text>
+<text text-anchor='middle' x='104' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='104' y='340' fill='currentColor' style='font-size:1em'>L</text>
 <text text-anchor='middle' x='112' y='4' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='112' y='196' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='112' y='212' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='112' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='112' y='260' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='112' y='276' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='112' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='112' y='308' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='112' y='340' fill='currentColor' style='font-size:1em'>A</text>
 <text text-anchor='middle' x='120' y='4' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='120' y='20' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='120' y='36' fill='currentColor' style='font-size:1em'>u</text>
@@ -1192,6 +544,12 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='120' y='132' fill='currentColor' style='font-size:1em'>B</text>
 <text text-anchor='middle' x='120' y='148' fill='currentColor' style='font-size:1em'>B</text>
 <text text-anchor='middle' x='120' y='164' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='120' y='196' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='120' y='212' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='120' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='120' y='260' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='120' y='308' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='120' y='340' fill='currentColor' style='font-size:1em'>V</text>
 <text text-anchor='middle' x='128' y='4' fill='currentColor' style='font-size:1em'>g</text>
 <text text-anchor='middle' x='128' y='20' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='128' y='36' fill='currentColor' style='font-size:1em'>s</text>
@@ -1203,6 +561,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='128' y='132' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='128' y='148' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='128' y='164' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='128' y='196' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='128' y='212' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='128' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='128' y='260' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='128' y='276' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='128' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='128' y='308' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='128' y='340' fill='currentColor' style='font-size:1em'>E</text>
 <text text-anchor='middle' x='136' y='20' fill='currentColor' style='font-size:1em'>b</text>
 <text text-anchor='middle' x='136' y='36' fill='currentColor' style='font-size:1em'>b</text>
 <text text-anchor='middle' x='136' y='52' fill='currentColor' style='font-size:1em'>b</text>
@@ -1213,6 +579,12 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='136' y='132' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='136' y='148' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='136' y='164' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='136' y='196' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='136' y='212' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='136' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='136' y='260' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='136' y='276' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='136' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='144' y='4' fill='currentColor' style='font-size:1em'>|</text>
 <text text-anchor='middle' x='144' y='68' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='144' y='84' fill='currentColor' style='font-size:1em'>e</text>
@@ -1221,6 +593,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='144' y='132' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='144' y='148' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='144' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='144' y='196' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='144' y='212' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='144' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='144' y='260' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='144' y='276' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='144' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='144' y='308' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='144' y='340' fill='currentColor' style='font-size:1em'>A</text>
 <text text-anchor='middle' x='152' y='20' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='152' y='36' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='152' y='52' fill='currentColor' style='font-size:1em'>1</text>
@@ -1231,6 +611,12 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='152' y='132' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='152' y='148' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='152' y='164' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='152' y='196' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='152' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='152' y='276' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='152' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='152' y='308' fill='currentColor' style='font-size:1em'>H</text>
+<text text-anchor='middle' x='152' y='340' fill='currentColor' style='font-size:1em'>C</text>
 <text text-anchor='middle' x='160' y='4' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='160' y='20' fill='currentColor' style='font-size:1em'>-</text>
 <text text-anchor='middle' x='160' y='36' fill='currentColor' style='font-size:1em'>-</text>
@@ -1242,6 +628,12 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='160' y='132' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='160' y='148' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='160' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='160' y='196' fill='currentColor' style='font-size:1em'>g</text>
+<text text-anchor='middle' x='160' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='160' y='260' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='160' y='276' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='160' y='308' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='160' y='340' fill='currentColor' style='font-size:1em'>C</text>
 <text text-anchor='middle' x='168' y='4' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='168' y='20' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='168' y='36' fill='currentColor' style='font-size:1em'>1</text>
@@ -1253,6 +645,11 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='168' y='132' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='168' y='148' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='168' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='168' y='212' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='168' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='168' y='260' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='168' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='168' y='340' fill='currentColor' style='font-size:1em'>E</text>
 <text text-anchor='middle' x='176' y='4' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='176' y='20' fill='currentColor' style='font-size:1em'>2</text>
 <text text-anchor='middle' x='176' y='36' fill='currentColor' style='font-size:1em'>2</text>
@@ -1264,6 +661,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='176' y='132' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='176' y='148' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='176' y='164' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='176' y='196' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='176' y='212' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='176' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='176' y='260' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='176' y='276' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='176' y='292' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='176' y='308' fill='currentColor' style='font-size:1em'>H</text>
+<text text-anchor='middle' x='176' y='340' fill='currentColor' style='font-size:1em'>P</text>
 <text text-anchor='middle' x='184' y='4' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='184' y='20' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='184' y='36' fill='currentColor' style='font-size:1em'>.</text>
@@ -1275,6 +680,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='184' y='132' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='184' y='148' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='184' y='164' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='184' y='196' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='184' y='212' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='184' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='184' y='260' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='184' y='276' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='184' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='184' y='308' fill='currentColor' style='font-size:1em'>V</text>
+<text text-anchor='middle' x='184' y='340' fill='currentColor' style='font-size:1em'>T</text>
 <text text-anchor='middle' x='192' y='20' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='192' y='36' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='192' y='52' fill='currentColor' style='font-size:1em'>4</text>
@@ -1285,10 +698,18 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='192' y='132' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='192' y='148' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='192' y='164' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='192' y='212' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='192' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='192' y='260' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='192' y='276' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='192' y='292' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='192' y='308' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='200' y='4' fill='currentColor' style='font-size:1em'>-</text>
 <text text-anchor='middle' x='200' y='20' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='200' y='36' fill='currentColor' style='font-size:1em'>.</text>
 <text text-anchor='middle' x='200' y='52' fill='currentColor' style='font-size:1em'>.</text>
+<text text-anchor='middle' x='200' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='200' y='276' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='208' y='4' fill='currentColor' style='font-size:1em'>f</text>
 <text text-anchor='middle' x='208' y='20' fill='currentColor' style='font-size:1em'>2</text>
 <text text-anchor='middle' x='208' y='36' fill='currentColor' style='font-size:1em'>2</text>
@@ -1300,6 +721,11 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='208' y='132' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='208' y='148' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='208' y='164' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='208' y='212' fill='currentColor' style='font-size:1em'>U</text>
+<text text-anchor='middle' x='208' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='208' y='260' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='208' y='276' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='208' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='216' y='20' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='216' y='36' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='216' y='52' fill='currentColor' style='font-size:1em'>:</text>
@@ -1310,6 +736,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='216' y='132' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='216' y='148' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='216' y='164' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='216' y='212' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='216' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='216' y='260' fill='currentColor' style='font-size:1em'>v</text>
+<text text-anchor='middle' x='216' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='224' y='68' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='224' y='84' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='224' y='100' fill='currentColor' style='font-size:1em'>i</text>
@@ -1317,6 +747,11 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='224' y='132' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='224' y='148' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='224' y='164' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='224' y='212' fill='currentColor' style='font-size:1em'>B</text>
+<text text-anchor='middle' x='224' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='224' y='260' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='224' y='276' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='224' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='232' y='20' fill='currentColor' style='font-size:1em'>P</text>
 <text text-anchor='middle' x='232' y='36' fill='currentColor' style='font-size:1em'>M</text>
 <text text-anchor='middle' x='232' y='52' fill='currentColor' style='font-size:1em'>S</text>
@@ -1327,6 +762,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='232' y='132' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='232' y='148' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='232' y='164' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='232' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='232' y='260' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='232' y='276' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='232' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='240' y='20' fill='currentColor' style='font-size:1em'>r</text>
 <text text-anchor='middle' x='240' y='36' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='240' y='52' fill='currentColor' style='font-size:1em'>e</text>
@@ -1337,9 +776,14 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='240' y='132' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='240' y='148' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='240' y='164' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='240' y='260' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='240' y='276' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='248' y='20' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='248' y='36' fill='currentColor' style='font-size:1em'>n</text>
 <text text-anchor='middle' x='248' y='52' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='248' y='260' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='248' y='276' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='248' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='256' y='20' fill='currentColor' style='font-size:1em'>d</text>
 <text text-anchor='middle' x='256' y='36' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='256' y='52' fill='currentColor' style='font-size:1em'>i</text>
@@ -1350,6 +794,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='256' y='132' fill='currentColor' style='font-size:1em'>R</text>
 <text text-anchor='middle' x='256' y='148' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='256' y='164' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='256' y='228' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='256' y='260' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='256' y='276' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='256' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='264' y='20' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='264' y='36' fill='currentColor' style='font-size:1em'>f</text>
 <text text-anchor='middle' x='264' y='52' fill='currentColor' style='font-size:1em'>a</text>
@@ -1360,6 +808,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='264' y='132' fill='currentColor' style='font-size:1em'>T</text>
 <text text-anchor='middle' x='264' y='148' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='264' y='164' fill='currentColor' style='font-size:1em'>T</text>
+<text text-anchor='middle' x='264' y='228' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='264' y='260' fill='currentColor' style='font-size:1em'>6</text>
+<text text-anchor='middle' x='264' y='276' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='264' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='272' y='20' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='272' y='36' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='272' y='52' fill='currentColor' style='font-size:1em'>l</text>
@@ -1370,6 +822,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='272' y='132' fill='currentColor' style='font-size:1em'>L</text>
 <text text-anchor='middle' x='272' y='148' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='272' y='164' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='272' y='228' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='272' y='260' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='272' y='276' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='272' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='280' y='20' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='280' y='36' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='280' y='52' fill='currentColor' style='font-size:1em'>N</text>
@@ -1380,10 +836,15 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='280' y='132' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='280' y='148' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='280' y='164' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='280' y='276' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='288' y='20' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='288' y='36' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='288' y='52' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='288' y='148' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='288' y='228' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='288' y='260' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='288' y='276' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='288' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='296' y='36' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='296' y='52' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='296' y='68' fill='currentColor' style='font-size:1em'>e</text>
@@ -1393,6 +854,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='296' y='132' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='296' y='148' fill='currentColor' style='font-size:1em'>n</text>
 <text text-anchor='middle' x='296' y='164' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='296' y='228' fill='currentColor' style='font-size:1em'>T</text>
+<text text-anchor='middle' x='296' y='260' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='296' y='276' fill='currentColor' style='font-size:1em'>6</text>
+<text text-anchor='middle' x='296' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='304' y='20' fill='currentColor' style='font-size:1em'>B</text>
 <text text-anchor='middle' x='304' y='36' fill='currentColor' style='font-size:1em'>r</text>
 <text text-anchor='middle' x='304' y='52' fill='currentColor' style='font-size:1em'>b</text>
@@ -1403,6 +868,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='304' y='132' fill='currentColor' style='font-size:1em'>f</text>
 <text text-anchor='middle' x='304' y='148' fill='currentColor' style='font-size:1em'>d</text>
 <text text-anchor='middle' x='304' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='304' y='228' fill='currentColor' style='font-size:1em'>U</text>
+<text text-anchor='middle' x='304' y='260' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='304' y='276' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='304' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='312' y='20' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='312' y='36' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='312' y='52' fill='currentColor' style='font-size:1em'>e</text>
@@ -1412,6 +881,9 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='312' y='116' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='312' y='132' fill='currentColor' style='font-size:1em'>g</text>
 <text text-anchor='middle' x='312' y='164' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='312' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='312' y='260' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='312' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='320' y='20' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='320' y='36' fill='currentColor' style='font-size:1em'>r</text>
 <text text-anchor='middle' x='320' y='52' fill='currentColor' style='font-size:1em'>r</text>
@@ -1422,6 +894,8 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='320' y='132' fill='currentColor' style='font-size:1em'>_</text>
 <text text-anchor='middle' x='320' y='148' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='320' y='164' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='260' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='320' y='276' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='328' y='20' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='328' y='36' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='328' y='52' fill='currentColor' style='font-size:1em'>:</text>
@@ -1432,6 +906,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='328' y='132' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='328' y='148' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='328' y='164' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='328' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='328' y='260' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='328' y='276' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='328' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='336' y='20' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='336' y='68' fill='currentColor' style='font-size:1em'>n</text>
 <text text-anchor='middle' x='336' y='84' fill='currentColor' style='font-size:1em'>e</text>
@@ -1440,6 +918,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='336' y='132' fill='currentColor' style='font-size:1em'>z</text>
 <text text-anchor='middle' x='336' y='148' fill='currentColor' style='font-size:1em'>f</text>
 <text text-anchor='middle' x='336' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='336' y='228' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='336' y='260' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='336' y='276' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='336' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='344' y='20' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='344' y='36' fill='currentColor' style='font-size:1em'>R</text>
 <text text-anchor='middle' x='344' y='52' fill='currentColor' style='font-size:1em'>0</text>
@@ -1449,6 +931,10 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='344' y='116' fill='currentColor' style='font-size:1em'>g</text>
 <text text-anchor='middle' x='344' y='148' fill='currentColor' style='font-size:1em'>c</text>
 <text text-anchor='middle' x='344' y='164' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='344' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='344' y='260' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='344' y='276' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='344' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='352' y='20' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='352' y='36' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='352' y='52' fill='currentColor' style='font-size:1em'>0</text>
@@ -1457,6 +943,8 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='352' y='132' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='352' y='148' fill='currentColor' style='font-size:1em'>2</text>
 <text text-anchor='middle' x='352' y='164' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='352' y='276' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='352' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='360' y='20' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='360' y='36' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='360' y='52' fill='currentColor' style='font-size:1em'>E</text>
@@ -1466,6 +954,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='360' y='116' fill='currentColor' style='font-size:1em'>r</text>
 <text text-anchor='middle' x='360' y='132' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='360' y='148' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='360' y='276' fill='currentColor' style='font-size:1em'>s</text>
 <text text-anchor='middle' x='368' y='20' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='368' y='36' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='368' y='52' fill='currentColor' style='font-size:1em'>0</text>
@@ -1474,6 +963,9 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='368' y='116' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='368' y='132' fill='currentColor' style='font-size:1em'>,</text>
 <text text-anchor='middle' x='368' y='164' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='368' y='228' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='368' y='276' fill='currentColor' style='font-size:1em'>:</text>
+<text text-anchor='middle' x='368' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='376' y='36' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='376' y='52' fill='currentColor' style='font-size:1em'>4</text>
 <text text-anchor='middle' x='376' y='68' fill='currentColor' style='font-size:1em'>h</text>
@@ -1482,6 +974,9 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='376' y='116' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='376' y='148' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='376' y='164' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='376' y='228' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='376' y='276' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='376' y='292' fill='currentColor' style='font-size:1em'>x</text>
 <text text-anchor='middle' x='384' y='20' fill='currentColor' style='font-size:1em'>R</text>
 <text text-anchor='middle' x='384' y='36' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='384' y='52' fill='currentColor' style='font-size:1em'>C</text>
@@ -1490,6 +985,8 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='384' y='116' fill='currentColor' style='font-size:1em'>_</text>
 <text text-anchor='middle' x='384' y='132' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='384' y='148' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='384' y='228' fill='currentColor' style='font-size:1em'>O</text>
+<text text-anchor='middle' x='384' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='392' y='20' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='392' y='36' fill='currentColor' style='font-size:1em'>k</text>
 <text text-anchor='middle' x='392' y='52' fill='currentColor' style='font-size:1em'>2</text>
@@ -1499,6 +996,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='392' y='116' fill='currentColor' style='font-size:1em'>b</text>
 <text text-anchor='middle' x='392' y='132' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='392' y='164' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='392' y='292' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='400' y='20' fill='currentColor' style='font-size:1em'>d</text>
 <text text-anchor='middle' x='400' y='52' fill='currentColor' style='font-size:1em'>3</text>
 <text text-anchor='middle' x='400' y='68' fill='currentColor' style='font-size:1em'>_</text>
@@ -1508,6 +1006,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='400' y='132' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='400' y='148' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='400' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='400' y='228' fill='currentColor' style='font-size:1em'>M</text>
 <text text-anchor='middle' x='408' y='20' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='408' y='52' fill='currentColor' style='font-size:1em'>9</text>
 <text text-anchor='middle' x='408' y='68' fill='currentColor' style='font-size:1em'>v</text>
@@ -1517,6 +1016,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='408' y='132' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='408' y='148' fill='currentColor' style='font-size:1em'>i</text>
 <text text-anchor='middle' x='408' y='164' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='408' y='228' fill='currentColor' style='font-size:1em'>T</text>
 <text text-anchor='middle' x='416' y='20' fill='currentColor' style='font-size:1em'>o</text>
 <text text-anchor='middle' x='416' y='52' fill='currentColor' style='font-size:1em'>9</text>
 <text text-anchor='middle' x='416' y='68' fill='currentColor' style='font-size:1em'>e</text>
@@ -1526,6 +1026,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='416' y='132' fill='currentColor' style='font-size:1em'>l</text>
 <text text-anchor='middle' x='416' y='148' fill='currentColor' style='font-size:1em'>m</text>
 <text text-anchor='middle' x='416' y='164' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='416' y='228' fill='currentColor' style='font-size:1em'>U</text>
 <text text-anchor='middle' x='424' y='52' fill='currentColor' style='font-size:1em'>8</text>
 <text text-anchor='middle' x='424' y='68' fill='currentColor' style='font-size:1em'>r</text>
 <text text-anchor='middle' x='424' y='84' fill='currentColor' style='font-size:1em'>u</text>
@@ -1533,6 +1034,7 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='424' y='116' fill='currentColor' style='font-size:1em'>t</text>
 <text text-anchor='middle' x='424' y='148' fill='currentColor' style='font-size:1em'>e</text>
 <text text-anchor='middle' x='424' y='164' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='424' y='228' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='432' y='52' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='432' y='68' fill='currentColor' style='font-size:1em'>=</text>
 <text text-anchor='middle' x='432' y='84' fill='currentColor' style='font-size:1em'>s</text>
@@ -1548,15 +1050,18 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='440' y='132' fill='currentColor' style='font-size:1em'>z</text>
 <text text-anchor='middle' x='440' y='148' fill='currentColor' style='font-size:1em'>u</text>
 <text text-anchor='middle' x='440' y='164' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='440' y='228' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='448' y='68' fill='currentColor' style='font-size:1em'>a</text>
 <text text-anchor='middle' x='448' y='84' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='448' y='100' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='448' y='116' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='448' y='148' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='448' y='228' fill='currentColor' style='font-size:1em'>:</text>
 <text text-anchor='middle' x='456' y='100' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='456' y='116' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='456' y='132' fill='currentColor' style='font-size:1em'>1</text>
 <text text-anchor='middle' x='456' y='164' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='456' y='228' fill='currentColor' style='font-size:1em'>0</text>
 <text text-anchor='middle' x='464' y='68' fill='currentColor' style='font-size:1em'>h</text>
 <text text-anchor='middle' x='464' y='84' fill='currentColor' style='font-size:1em'>v</text>
 <text text-anchor='middle' x='464' y='100' fill='currentColor' style='font-size:1em'>1</text>
@@ -1639,298 +1144,6 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
 <text text-anchor='middle' x='752' y='68' fill='currentColor' style='font-size:1em'>7</text>
 <text text-anchor='middle' x='760' y='68' fill='currentColor' style='font-size:1em'>6</text>
 <text text-anchor='middle' x='768' y='68' fill='currentColor' style='font-size:1em'>1</text>
-</g>
-
-    </svg>
-  
-</div>
-
-
-
-<div class="goat svg-container ">
-  
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      font-family="Menlo,Lucida Console,monospace"
-      
-        viewBox="0 0 472 169"
-      >
-      <g transform='translate(8,16)'>
-<text text-anchor='middle' x='0' y='4' fill='currentColor' style='font-size:1em'>(</text>
-<text text-anchor='middle' x='0' y='20' fill='currentColor' style='font-size:1em'>h</text>
-<text text-anchor='middle' x='0' y='36' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='52' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='68' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='84' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='100' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='116' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='132' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='0' y='148' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='8' y='4' fill='currentColor' style='font-size:1em'>b</text>
-<text text-anchor='middle' x='8' y='20' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='8' y='36' fill='currentColor' style='font-size:1em'>B</text>
-<text text-anchor='middle' x='8' y='52' fill='currentColor' style='font-size:1em'>D</text>
-<text text-anchor='middle' x='8' y='68' fill='currentColor' style='font-size:1em'>R</text>
-<text text-anchor='middle' x='8' y='84' fill='currentColor' style='font-size:1em'>T</text>
-<text text-anchor='middle' x='8' y='100' fill='currentColor' style='font-size:1em'>F</text>
-<text text-anchor='middle' x='8' y='116' fill='currentColor' style='font-size:1em'>P</text>
-<text text-anchor='middle' x='8' y='132' fill='currentColor' style='font-size:1em'>L</text>
-<text text-anchor='middle' x='8' y='148' fill='currentColor' style='font-size:1em'>L</text>
-<text text-anchor='middle' x='16' y='4' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='16' y='20' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='16' y='36' fill='currentColor' style='font-size:1em'>D</text>
-<text text-anchor='middle' x='16' y='52' fill='currentColor' style='font-size:1em'>O</text>
-<text text-anchor='middle' x='16' y='68' fill='currentColor' style='font-size:1em'>X</text>
-<text text-anchor='middle' x='16' y='84' fill='currentColor' style='font-size:1em'>X</text>
-<text text-anchor='middle' x='16' y='100' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='16' y='116' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='16' y='132' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='16' y='148' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='24' y='4' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='24' y='20' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='24' y='52' fill='currentColor' style='font-size:1em'>W</text>
-<text text-anchor='middle' x='24' y='100' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='24' y='116' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='24' y='132' fill='currentColor' style='font-size:1em'>n</text>
-<text text-anchor='middle' x='24' y='148' fill='currentColor' style='font-size:1em'>n</text>
-<text text-anchor='middle' x='32' y='4' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='32' y='20' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='32' y='36' fill='currentColor' style='font-size:1em'>A</text>
-<text text-anchor='middle' x='32' y='52' fill='currentColor' style='font-size:1em'>N</text>
-<text text-anchor='middle' x='32' y='68' fill='currentColor' style='font-size:1em'>b</text>
-<text text-anchor='middle' x='32' y='84' fill='currentColor' style='font-size:1em'>b</text>
-<text text-anchor='middle' x='32' y='100' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='32' y='116' fill='currentColor' style='font-size:1em'>k</text>
-<text text-anchor='middle' x='32' y='132' fill='currentColor' style='font-size:1em'>k</text>
-<text text-anchor='middle' x='32' y='148' fill='currentColor' style='font-size:1em'>k</text>
-<text text-anchor='middle' x='40' y='4' fill='currentColor' style='font-size:1em'>)</text>
-<text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'>	</text>
-<text text-anchor='middle' x='40' y='36' fill='currentColor' style='font-size:1em'>d</text>
-<text text-anchor='middle' x='40' y='68' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='40' y='84' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'>u</text>
-<text text-anchor='middle' x='40' y='116' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='48' y='20' fill='currentColor' style='font-size:1em'>T</text>
-<text text-anchor='middle' x='48' y='36' fill='currentColor' style='font-size:1em'>d</text>
-<text text-anchor='middle' x='48' y='68' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='48' y='84' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='48' y='100' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='48' y='116' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='48' y='132' fill='currentColor' style='font-size:1em'>p</text>
-<text text-anchor='middle' x='48' y='148' fill='currentColor' style='font-size:1em'>m</text>
-<text text-anchor='middle' x='56' y='4' fill='currentColor' style='font-size:1em'>➜</text>
-<text text-anchor='middle' x='56' y='20' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='56' y='36' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='56' y='68' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='56' y='84' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='56' y='100' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='56' y='132' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='56' y='148' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='64' y='20' fill='currentColor' style='font-size:1em'>p</text>
-<text text-anchor='middle' x='64' y='36' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='64' y='68' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='64' y='84' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='64' y='100' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='64' y='116' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='64' y='132' fill='currentColor' style='font-size:1em'>l</text>
-<text text-anchor='middle' x='64' y='148' fill='currentColor' style='font-size:1em'>d</text>
-<text text-anchor='middle' x='72' y='20' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='72' y='36' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='72' y='68' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='72' y='84' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='72' y='100' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='72' y='116' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='72' y='132' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='72' y='148' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='80' y='4' fill='currentColor' style='font-size:1em'>~</text>
-<text text-anchor='middle' x='80' y='20' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='80' y='36' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='80' y='68' fill='currentColor' style='font-size:1em'>4</text>
-<text text-anchor='middle' x='80' y='84' fill='currentColor' style='font-size:1em'>1</text>
-<text text-anchor='middle' x='80' y='116' fill='currentColor' style='font-size:1em'>p</text>
-<text text-anchor='middle' x='80' y='132' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='80' y='148' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='88' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='88' y='68' fill='currentColor' style='font-size:1em'>2</text>
-<text text-anchor='middle' x='88' y='84' fill='currentColor' style='font-size:1em'>5</text>
-<text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='88' y='116' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='88' y='132' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='96' y='4' fill='currentColor' style='font-size:1em'>h</text>
-<text text-anchor='middle' x='96' y='20' fill='currentColor' style='font-size:1em'>P</text>
-<text text-anchor='middle' x='96' y='68' fill='currentColor' style='font-size:1em'>7</text>
-<text text-anchor='middle' x='96' y='84' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='96' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='96' y='116' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='96' y='132' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='96' y='148' fill='currentColor' style='font-size:1em'>S</text>
-<text text-anchor='middle' x='104' y='4' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='104' y='20' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='104' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='104' y='84' fill='currentColor' style='font-size:1em'>5</text>
-<text text-anchor='middle' x='104' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='104' y='148' fill='currentColor' style='font-size:1em'>L</text>
-<text text-anchor='middle' x='112' y='4' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='112' y='20' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='112' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='112' y='68' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='112' y='84' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='112' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='112' y='116' fill='currentColor' style='font-size:1em'>D</text>
-<text text-anchor='middle' x='112' y='148' fill='currentColor' style='font-size:1em'>A</text>
-<text text-anchor='middle' x='120' y='4' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='120' y='20' fill='currentColor' style='font-size:1em'>m</text>
-<text text-anchor='middle' x='120' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='120' y='68' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='120' y='116' fill='currentColor' style='font-size:1em'>M</text>
-<text text-anchor='middle' x='120' y='148' fill='currentColor' style='font-size:1em'>V</text>
-<text text-anchor='middle' x='128' y='4' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='128' y='20' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='128' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='128' y='68' fill='currentColor' style='font-size:1em'>l</text>
-<text text-anchor='middle' x='128' y='84' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='128' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='128' y='116' fill='currentColor' style='font-size:1em'>1</text>
-<text text-anchor='middle' x='128' y='148' fill='currentColor' style='font-size:1em'>E</text>
-<text text-anchor='middle' x='136' y='4' fill='currentColor' style='font-size:1em'>n</text>
-<text text-anchor='middle' x='136' y='20' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='136' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='136' y='68' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='136' y='84' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='136' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='144' y='4' fill='currentColor' style='font-size:1em'>f</text>
-<text text-anchor='middle' x='144' y='20' fill='currentColor' style='font-size:1em'>y</text>
-<text text-anchor='middle' x='144' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='144' y='68' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='144' y='84' fill='currentColor' style='font-size:1em'>l</text>
-<text text-anchor='middle' x='144' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='144' y='116' fill='currentColor' style='font-size:1em'>D</text>
-<text text-anchor='middle' x='144' y='148' fill='currentColor' style='font-size:1em'>A</text>
-<text text-anchor='middle' x='152' y='4' fill='currentColor' style='font-size:1em'>i</text>
-<text text-anchor='middle' x='152' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='152' y='84' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='152' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='152' y='116' fill='currentColor' style='font-size:1em'>H</text>
-<text text-anchor='middle' x='152' y='148' fill='currentColor' style='font-size:1em'>C</text>
-<text text-anchor='middle' x='160' y='4' fill='currentColor' style='font-size:1em'>g</text>
-<text text-anchor='middle' x='160' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='160' y='68' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='160' y='84' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='160' y='116' fill='currentColor' style='font-size:1em'>1</text>
-<text text-anchor='middle' x='160' y='148' fill='currentColor' style='font-size:1em'>C</text>
-<text text-anchor='middle' x='168' y='20' fill='currentColor' style='font-size:1em'>B</text>
-<text text-anchor='middle' x='168' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='168' y='68' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='168' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='168' y='148' fill='currentColor' style='font-size:1em'>E</text>
-<text text-anchor='middle' x='176' y='4' fill='currentColor' style='font-size:1em'>-</text>
-<text text-anchor='middle' x='176' y='20' fill='currentColor' style='font-size:1em'>u</text>
-<text text-anchor='middle' x='176' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='176' y='68' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='176' y='84' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='176' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='176' y='116' fill='currentColor' style='font-size:1em'>H</text>
-<text text-anchor='middle' x='176' y='148' fill='currentColor' style='font-size:1em'>P</text>
-<text text-anchor='middle' x='184' y='4' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='184' y='20' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='184' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='184' y='68' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='184' y='84' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='184' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='184' y='116' fill='currentColor' style='font-size:1em'>V</text>
-<text text-anchor='middle' x='184' y='148' fill='currentColor' style='font-size:1em'>T</text>
-<text text-anchor='middle' x='192' y='20' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='192' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='192' y='68' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='192' y='84' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='192' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='192' y='116' fill='currentColor' style='font-size:1em'>1</text>
-<text text-anchor='middle' x='200' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='200' y='84' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='208' y='20' fill='currentColor' style='font-size:1em'>U</text>
-<text text-anchor='middle' x='208' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='208' y='68' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='208' y='84' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='208' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='216' y='20' fill='currentColor' style='font-size:1em'>S</text>
-<text text-anchor='middle' x='216' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='216' y='68' fill='currentColor' style='font-size:1em'>v</text>
-<text text-anchor='middle' x='216' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='224' y='20' fill='currentColor' style='font-size:1em'>B</text>
-<text text-anchor='middle' x='224' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='224' y='68' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='224' y='84' fill='currentColor' style='font-size:1em'>c</text>
-<text text-anchor='middle' x='224' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='232' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='232' y='68' fill='currentColor' style='font-size:1em'>n</text>
-<text text-anchor='middle' x='232' y='84' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='232' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='240' y='68' fill='currentColor' style='font-size:1em'>t</text>
-<text text-anchor='middle' x='240' y='84' fill='currentColor' style='font-size:1em'>m</text>
-<text text-anchor='middle' x='248' y='68' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='248' y='84' fill='currentColor' style='font-size:1em'>m</text>
-<text text-anchor='middle' x='248' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='256' y='36' fill='currentColor' style='font-size:1em'>A</text>
-<text text-anchor='middle' x='256' y='68' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='256' y='84' fill='currentColor' style='font-size:1em'>a</text>
-<text text-anchor='middle' x='256' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='264' y='36' fill='currentColor' style='font-size:1em'>C</text>
-<text text-anchor='middle' x='264' y='68' fill='currentColor' style='font-size:1em'>6</text>
-<text text-anchor='middle' x='264' y='84' fill='currentColor' style='font-size:1em'>n</text>
-<text text-anchor='middle' x='264' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='272' y='36' fill='currentColor' style='font-size:1em'>L</text>
-<text text-anchor='middle' x='272' y='68' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='272' y='84' fill='currentColor' style='font-size:1em'>d</text>
-<text text-anchor='middle' x='272' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='280' y='84' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='288' y='36' fill='currentColor' style='font-size:1em'>M</text>
-<text text-anchor='middle' x='288' y='68' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='288' y='84' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='288' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='296' y='36' fill='currentColor' style='font-size:1em'>T</text>
-<text text-anchor='middle' x='296' y='68' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='296' y='84' fill='currentColor' style='font-size:1em'>6</text>
-<text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='304' y='36' fill='currentColor' style='font-size:1em'>U</text>
-<text text-anchor='middle' x='304' y='68' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='304' y='84' fill='currentColor' style='font-size:1em'>1</text>
-<text text-anchor='middle' x='304' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='312' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='312' y='68' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='312' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='320' y='68' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='320' y='84' fill='currentColor' style='font-size:1em'>e</text>
-<text text-anchor='middle' x='328' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='328' y='68' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='328' y='84' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='328' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='336' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='336' y='68' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='336' y='84' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='336' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='344' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='344' y='68' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='344' y='84' fill='currentColor' style='font-size:1em'>o</text>
-<text text-anchor='middle' x='344' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='352' y='84' fill='currentColor' style='font-size:1em'>r</text>
-<text text-anchor='middle' x='352' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='360' y='84' fill='currentColor' style='font-size:1em'>s</text>
-<text text-anchor='middle' x='368' y='36' fill='currentColor' style='font-size:1em'>S</text>
-<text text-anchor='middle' x='368' y='84' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='368' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='376' y='36' fill='currentColor' style='font-size:1em'>C</text>
-<text text-anchor='middle' x='376' y='84' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='376' y='100' fill='currentColor' style='font-size:1em'>x</text>
-<text text-anchor='middle' x='384' y='36' fill='currentColor' style='font-size:1em'>O</text>
-<text text-anchor='middle' x='384' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='392' y='100' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='400' y='36' fill='currentColor' style='font-size:1em'>M</text>
-<text text-anchor='middle' x='408' y='36' fill='currentColor' style='font-size:1em'>T</text>
-<text text-anchor='middle' x='416' y='36' fill='currentColor' style='font-size:1em'>U</text>
-<text text-anchor='middle' x='424' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='440' y='36' fill='currentColor' style='font-size:1em'>0</text>
-<text text-anchor='middle' x='448' y='36' fill='currentColor' style='font-size:1em'>:</text>
-<text text-anchor='middle' x='456' y='36' fill='currentColor' style='font-size:1em'>0</text>
 </g>
 
     </svg>
@@ -3486,23 +2699,191 @@ uGreen Bluetooth 5.0 USB Adapter CM390</p>
   
 </div>
 <p>可以看到蓝牙适配器正常驱动起来了，使用Bluetooth Manager程序搜索一下，成功发现N多蓝牙设备，试了一下与我的手环链接，都是正常的。到此结束。</p>
-<ul class="pa0">
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;text=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
   
-</ul>
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;title=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;title=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;title=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;description=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
 
       
-    </div></article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
-    &copy;  Jason Lee's Blog 2026 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
+      <li>
+        <a href="mailto:?body=http%3a%2f%2flocalhost%3a1313%2fposts%2fhow-to-fix-cm390-ble-adaptor-for-ubuntu%2f&amp;subject=How%20to%20Fix%20Cm390%20Ble%20Adaptor%20for%20Ubuntu" title="Share via email">
+          <i class="fab fa-at"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-</footer>
+  
 
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://localhost:1313/posts/master2s/" data-toggle="tooltip" data-placement="top" title="Master2s">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+      
+      
+      
+      
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      <footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+		
+		  <a href="mailto:jsnleeming@gmail.com" title="Email me">
+		
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+		
+		  <a href="https://github.com/jasonleecode" title="GitHub">
+		
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+		
+		  <a href="https://gitlab.com/username" title="GitLab">
+		
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="www.jsnlee.com">Jason Lee</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2026
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://localhost:1313/">Jason Lee&#39;s Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.146.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="http://localhost:1313/js/main.js"></script>
+<script src="http://localhost:1313/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="http://localhost:1313/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
   </body>
 </html>
+

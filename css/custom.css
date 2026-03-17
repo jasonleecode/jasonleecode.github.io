@@ -1,0 +1,10 @@
+/* Custom font for code blocks and inline code */
+code, pre, .highlight {
+    font-family: "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace !important;
+    font-size: 0.95em; /* Slightly adjust size for better readability */
+}
+
+/* Optional: improve spacing in code blocks */
+pre code {
+    line-height: 1.5;
+}
