@@ -12,9 +12,9 @@
     <atom:link href="https://jasonleecode.github.io/tags/fix/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Fix Cm390 Ble Adaptor for Ubuntu</title>
-      <link>https://jasonleecode.github.io/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/</link>
+      <link>https://jasonleecode.github.io/posts/cm390-ble/</link>
       <pubDate>Tue, 17 Mar 2026 10:19:13 +0800</pubDate><author>jsnleeming@gmail.com (Jason Lee)</author>
-      <guid>https://jasonleecode.github.io/posts/how-to-fix-cm390-ble-adaptor-for-ubuntu/</guid>
+      <guid>https://jasonleecode.github.io/posts/cm390-ble/</guid>
       <description>&lt;h1 id=&#34;ubuntu1804-rtl8761bu-bluetooth-driver&#34;&gt;ubuntu18.04 rtl8761bu bluetooth driver&lt;/h1&gt;&#xA;&lt;p&gt;最近想给我的台式机上加个蓝牙适配器，蓝牙5.0那种，支持BLE设备，这样我就可以基于我的手环以及手机之类的BLE设备做一些东西玩玩。不幸的是，蓝牙适配器买回来后没法驱动，dmesg | tail -f 可以看到加载/lib/firmware/rtl_bt/下面的firmware失败了，我进目录看了下，并没有现成的firmware。Google了一下，在linux git repo中找到了需要的文件，然后就是下载解压复制，重新插拔usb蓝牙适配器，提示加载firmware成功了，hciconfig -a也可以看到hci0设备了，但是执行部分指令的时候失败，blueman也无法操作蓝牙适配器。&lt;/p&gt;</description>
     </item>
   </channel>
